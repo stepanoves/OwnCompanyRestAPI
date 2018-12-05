@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IT Company Gaming</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row alert alert-primary">
+        <b>Your own company</b>
+    </div>
+    <div class="row">
+        <div class="col-3"><b>Основные настройки</b></div>
+        <div class="col-3"><b>Ход игры</b></div>
+        <div class="col-6"><b>Персонал</b></div>
+    </div>
+    <hr>
+    <div class="row">
+
+        <div class="col-3">
+            <input type="text" class="form-control title" placeholder="Введите название">
+            <br>
+            <input type="text" class="form-control budget" placeholder="Введите бюджет">
+            <br>
+            <button class="btn btn-primary start-btn">Старт</button>
+        </div>
+
+        <div class="col-3 current-budget">
+            <input id="budget" type="text" class="form-control current-budget" placeholder="Текущий бюджет" disabled>
+        </div>
+    </div>
+    <hr>
+
+
+    <div class="row">
+        <div class="col-4">
+            <b>Добавить проект</b>
+            <input type="text" class="form-control project-title" placeholder="Название проекта">
+            <br>
+            <input type="text" class="form-control project-cost" placeholder="Стоимость">
+            <br>
+            <input type="text" class="form-control devs-quantity" placeholder="Количество программистов">
+            <br>
+            <input type="text" class="form-control project-str-quantity" placeholder="Количество строк">
+            <br>
+            <button class="btn btn-primary add-project">Добавить</button>
+        </div>
+        <div class="col-4">
+            <b>Добавить менеджера</b>
+            <input type="text" class="form-control mngr-name" placeholder="Имя">
+            <br>
+            <input type="text" class="form-control mngr-surname" placeholder="Фамилия">
+            <br>
+            <input type="text" class="form-control mngr-exp" placeholder="Опыт">
+            <br>
+            <button class="btn btn-primary add-mngr">Добавить</button>
+        </div>
+        <div class="col-4">
+            <b>Добавить программиста</b>
+            <input type="text" class="form-control dev-name" placeholder="Имя">
+            <br>
+            <input type="text" class="form-control dev-surname" placeholder="Фамилия">
+            <br>
+            <select class="custom-select dev-position">
+                <option>JUNIOR</option>
+                <option>MIDDLE</option>
+                <option>SENIOR</option>
+            </select>
+            <br><br>
+
+            <input type="text" class="form-control str-quantity" placeholder="Количество строк за 5 сек">
+            <br>
+            <button class="btn btn-primary add-dev">Добавить</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <b>Проекты</b>
+        </div>
+        <div class="col-4">
+            <b>Менеджеры</b>
+        </div>
+        <div class="col-4">
+            <b>Программисты</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 projects-free">
+        </div>
+        <div class="col-4 managers-free">
+        </div>
+        <div class="col-4 developers-free">
+        </div>
+
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-4">
+            <b>Проекты в процессе</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 projects-process">
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="./js/entity/abstract/AbstractEntity.js"></script>
+<script src="js/entity/abstract/AbstractEmployee.js"></script>
+<script src="js/entity/Developer.js"></script>
+<script src="js/entity/Manager.js"></script>
+<script src="js/entity/Project.js"></script>
+<script src="js/entity/Company.js"></script>
+<script src="js/view/FireButton.js"></script>
+<script src="../js/view/ItemView.js"></script>
+<script src="../js/view/View.js"></script>
+<script src="../js/application/Application.js"></script>
+<script src="../js/Start.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

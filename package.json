@@ -1,0 +1,28 @@
+{
+  "name": "restapi",
+  "version": "1.0.0",
+  "description": "express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stepanoves/OwnCompanyRestAPI.git"
+  },
+  "keywords": [
+    "express"
+  ],
+  "author": "Egor Stepanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stepanoves/OwnCompanyRestAPI/issues"
+  },
+  "homepage": "https://github.com/stepanoves/OwnCompanyRestAPI#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "path": "^0.12.7"
+  }
+}

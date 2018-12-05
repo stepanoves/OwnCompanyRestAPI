@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your own company</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <h1>Your own company <span class="badge badge-secondary">REST</span></h1>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <div class="start-panel">
+                    <h6>Сначала введите название и бюджет компании</h6>
+                    <input type="text" class="form-control title" placeholder="Введите название">
+                    <input type="text" class="form-control budget" placeholder="Введите бюджет">
+                    <input id="budget" type="text" class="form-control current-budget" placeholder="Текущий бюджет" disabled>
+                    <button class="btn btn-danger stop-btn">Стоп</button>
+                    <button class="btn btn-primary start-btn">Старт</button>
+                </div>
+
+                <select class="custom-select choose-add">
+                    <option>Добавить</option>
+                    <option value=".add-project-panel">Проект</option>
+                    <option value=".add-manager-panel">Менеджера</option>
+                    <option value=".add-developer-panel">Программиста</option>
+                </select>
+
+                <div class="add-project-panel">
+                    <input type="text" class="form-control project-title" placeholder="Название проекта">
+                    <input type="text" class="form-control project-cost" placeholder="Стоимость">
+                    <input type="text" class="form-control devs-quantity" placeholder="Количество программистов">
+                    <input type="text" class="form-control project-str-quantity" placeholder="Количество строк">
+                    <button class="btn btn-primary add-project">Добавить</button>
+                </div>
+
+                <div class="add-manager-panel">
+                    <input type="text" class="form-control mngr-name" placeholder="Имя">
+                    <input type="text" class="form-control mngr-surname" placeholder="Фамилия">
+                    <input type="text" class="form-control mngr-exp" placeholder="Опыт">
+                    <button class="btn btn-primary add-mngr">Добавить</button>
+                </div>
+
+                <div class="add-developer-panel">
+                    <input type="text" class="form-control dev-name" placeholder="Имя">
+                    <input type="text" class="form-control dev-surname" placeholder="Фамилия">
+                    <select class="custom-select dev-position">
+                        <option>JUNIOR</option>
+                        <option>MIDDLE</option>
+                        <option>SENIOR</option>
+                    </select>
+                    <input type="text" class="form-control str-quantity" placeholder="Количество строк за 5 сек">
+                    <button class="btn btn-primary add-dev">Добавить</button>
+                </div>
+            </div>
+
+            <div class="col-3 information">
+                <p>Проекты в очереди</p>
+                <div class="projects-free">
+
+                </div>
+                <p>Проекты в процессе</p>
+                <div class="projects-process">
+
+                </div>
+            </div>
+
+            <div class="col-3 information">
+                <p>Свободные менеджеры</p>
+                <div class="managers-free">
+
+                </div>
+                <p>Занятые менеджеры</p>
+                <div class="managers-process">
+
+                </div>
+            </div>
+
+            <div class="col-3 information">
+                <p>Свободные программисты</p>
+                <div class="developers-free">
+
+                </div>
+                <p>Занятые программисты</p>
+                <div class="developers-process">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="js/view/FireButton.js"></script>
+    <script src="js/view/ItemView.js"></script>
+    <script src="js/view/View.js"></script>
+    <script src="js/application/Application.js"></script>
+    <script src="js/Start.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

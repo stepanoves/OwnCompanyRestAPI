@@ -1,0 +1,42 @@
+.add-project-panel, .add-manager-panel, .add-developer-panel{
+    display: none;
+}
+
+.choose-add {
+    margin-top: 10px;
+}
+
+.budget, .project-cost, .devs-quantity,
+.project-str-quantity, .start-btn, .add-project,
+.stop-btn, .mngr-surname, .mngr-exp,
+.add-mngr, .dev-name, .dev-surname,
+.dev-position, .str-quantity, .add-dev,
+.current-budget, .add-project-panel,
+.add-manager-panel, .add-developer-panel{
+    margin-top: 3px;
+}
+
+.start-btn, .stop-btn, .add-project,
+.add-mngr, .add-dev  {
+    float: right;
+}
+
+.information {
+    margin-top: 46px;
+}
+
+.projects-free, .projects-process,
+.managers-free, .managers-process,
+.developers-free, .developers-process{
+    height: 300px;
+    border: 1px rgba(4,4,4,0.18) solid;
+}
+
+.start-btn {
+    margin-right: 3px;
+}
+
+.item {
+    border-bottom: 1px rgba(4,4,4,0.18) solid;
+
+}
