@@ -26,6 +26,7 @@
     };
 
     const ELEMENTS = {
+        title : document.querySelector('.title'),
         freeDevDiv: document.querySelector('.developers-free'),
         freeManDiv: document.querySelector('.managers-free'),
         freeProjDiv: document.querySelector('.projects-free'),
@@ -47,7 +48,7 @@
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then( (res) => console.log(res.status) );
+        });
         titleField.setAttribute('disabled', '');
         budgetField.setAttribute('disabled', '');
         application.start(ELEMENTS);
@@ -58,7 +59,7 @@
         titleField.removeAttribute('disabled');
         budgetField.removeAttribute('disabled');
         ELEMENTS.currentBudget.value = '';
-    })
+    });
 
     addDevButton.addEventListener('click', function () {
         const name =  devNameField.value;
@@ -72,7 +73,7 @@
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then( (res) => console.log(res.status) );
+        });
 
     });
 
@@ -87,7 +88,7 @@
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then( (res) => console.log(res.status) );
+        });
 
     });
 
@@ -103,7 +104,7 @@
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then( (res) => console.log(res.status) );
+        });
 
     });
 

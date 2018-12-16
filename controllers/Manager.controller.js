@@ -1,68 +1,35 @@
-const {managers} = require('../mocks/Manager.mock');
-const {Manager} = require('../models/Manager');
+const {managerRepository} = require('../repositories/ManagerRepository')
 
 class ManagerController {
 
-    findOne(id) {
-        return managers.find(
-            ({id: MId}) => MId === +id
-        );
+    async create(manager) {
+        return await managerRepository.create(manager);
     }
 
-    findByStatus(status) {
-        let stat = status === 'true';
-        return managers.filter(
-            ({status: Mstatus}) => Mstatus === stat
-        );
+    async remove(id) {
+        return await managerRepository.remove(id);
     }
 
-    findFree() {
-        let freeManagers = this.findByStatus(false);
-        if (freeManagers.length >= 1) {
-            return freeManagers[0];
-        }
-        return false;
+    async update(id, manager) {
+        return await managerRepository.update(id, manager);
     }
 
-    getCefficient(managerID) {
-        return this.findOne(managerID)
+    async findAll() {
+        return await managerRepository.findAll();
     }
 
-    changeStatus(managerID) {
-        this.findOne(managerID).status = !this.findOne(managerID).status;
+    async findOne(id) {
+        return await managerRepository.findOne(id);
     }
 
-    create( {name, surname, coefficient} ) {
-        let manager = new Manager(name, surname, coefficient);
-
-        if(!managers.length) {
-            manager.setID(1);
-        } else {
-            manager.setID(managers[managers.length-1].id + 1);
-        }
-
-        managers.push(manager);
+    async findByStatus(status) {
+        return await managerRepository.findByStatus(status);
     }
 
-    updateOne(id, {name, surname, coefficient} ) {
-        const index = managers.findIndex(obj => obj.id === +id);
-        managers[index].name = name;
-        managers[index].surname = surname;
-        managers[index].coefficient = coefficient;
+    async getSalary() {
+        return await managerRepository.getSalary();
     }
 
-    deleteOne(id) {
-        const index = managers.findIndex(obj => obj.id === +id);
-        managers.splice(index, 1);
-    }
-
-    getSalary() {
-        let salary = 0;
-        for(let manager of managers) {
-            salary += Manager.SALARY[manager.status];
-        }
-        return salary;
-    }
 }
 
 exports.managerController = new ManagerController();
