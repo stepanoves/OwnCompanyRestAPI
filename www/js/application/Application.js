@@ -2,10 +2,11 @@ class Application {
 
     constructor() {
         this.__view = new View();
+        this.__gameAPI = new GameAPI();
     }
 
-    start(elements) {
-        this.everyTurn(elements);
+    async start(elements) {
+        await this.everyTurn(elements);
 
         Application.timerID = setInterval(() => {
             this.everyTurn(elements);
@@ -16,65 +17,61 @@ class Application {
         clearInterval(Application.timerID);
     }
 
-    everyTurn(elements) {
+    async everyTurn(elements) {
 
-        fetch('http://localhost:3000/projects/false',  {
+        await fetch('http://localhost:3000/projects/checkprojects', {
+            method: 'PUT'
+        });
+
+        await fetch('http://localhost:3000/projects/status/false',  {
             method: 'GET'
         })
             .then((res) => res.json())
             .then(res => this.__view.updateItems(res, elements.freeProjDiv));
 
-        fetch('http://localhost:3000/projects/true',  {
+        await fetch('http://localhost:3000/projects/status/true',  {
             method: 'GET'
         })
             .then((res) => res.json())
             .then(res => this.__view.updateItems(res, elements.processProjDiv));
 
-        fetch('http://localhost:3000/managers/false',  {
+        await fetch('http://localhost:3000/managers/status/false',  {
             method: 'GET'
         })
             .then((res) => res.json())
             .then(res => this.__view.updateItems(res, elements.freeManDiv));
 
-        fetch('http://localhost:3000/managers/true',  {
+        await fetch('http://localhost:3000/managers/status/true',  {
             method: 'GET'
         })
             .then((res) => res.json())
             .then(res => this.__view.updateItems(res, elements.processManDiv));
 
-        fetch('http://localhost:3000/developers/false',  {
+        await fetch('http://localhost:3000/developers/status/false',  {
             method: 'GET'
         })
             .then((res) => res.json())
             .then(res =>  {this.__view.updateItems(res, elements.freeDevDiv)});
 
-        fetch('http://localhost:3000/developers/true',  {
+        await fetch('http://localhost:3000/developers/status/true',  {
             method: 'GET'
         })
             .then((res) => res.json())
             .then(res =>  {this.__view.updateItems(res, elements.processDevDiv)});
 
+        await fetch(`http://localhost:3000/company/${elements.title.value}/${elements.currentBudget.value}`,  {
+            method: 'PUT'
+        });
 
-        fetch('http://localhost:3000/company',  {
+        await fetch(`http://localhost:3000/company/budget/${elements.title.value}`,  {
             method: 'GET'
         })
             .then((res) => res.json())
-            .then(res => this.__view.updateBudget(res.budget, elements.currentBudget));
-
-        fetch('http://localhost:3000/company/paysalary',  {
-            method: 'PUT'
-        })
-            .then((res) => res.json())
-            .then(res => this.__view.updateBudget(res.budget, elements.currentBudget));
-
-
-        fetch('http://localhost:3000/projects/checkprojects',  {
-            method: 'PUT'
-        })
-            .then( (res) => console.log(res.status) );
-
+            .then(res => {this.__view.updateBudget(res[0].budget, elements.currentBudget)});
 
     }
+
+
 }
 
 Application.timerID = undefined;

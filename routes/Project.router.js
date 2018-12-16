@@ -1,5 +1,5 @@
-const {Router} = require('express');
 const {projectController} = require('../controllers/Project.controller');
+const {Router} = require('express');
 
 class ProjectRouter {
     constructor() {
@@ -13,27 +13,54 @@ class ProjectRouter {
 
     __configure() {
 
-        this.__router.get('/:status', (req, res) => {
-            const {status} = req.params;
-            res.json(projectController.findByStatus(status));
+        this.__router.get('/', async(req, res) => {
+            res.json(
+                await projectController.findAll()
+            )
         });
 
-        this.__router.post('/', (req, res) => {
-            const {body} = req;
-            projectController.create(body);
-            res.status(201).end();
-        });
-
-        this.__router.put('/checkprojects', (req, res) => {
-            projectController.checkProjects();
-            res.status(201).end();
-        });
-
-        this.__router.delete('/delete/:id', (req, res) => {
+        this.__router.get('/:id', async(req, res) => {
             const {id} = req.params;
-            projectController.deleteOne(id);
-            res.status(200).end();
+            res.json(
+                await projectController.findOne(id)
+            )
         });
+
+        this.__router.get('/status/:status', async(req, res) => {
+            const {status} = req.params;
+            res.json(
+                await projectController.findByStatus(status)
+            )
+        });
+
+        this.__router.post('/', async(req, res) => {
+            const {body} = req;
+
+            await projectController.create(body);
+            res.status(201).end();
+        })
+
+        this.__router.put('/checkprojects', async(req, res) => {
+
+            await projectController.checkProjects();
+            res.status(201).end();
+        });
+
+        this.__router.put('/:id', async(req, res) => {
+            const {id} = req.params;
+            const {body} = req;
+
+            await projectController.update(id, body);
+            res.status(201).end();
+        });
+
+        this.__router.delete('/:id', async(req, res) => {
+            const {id} = req.params;
+            console.log(id);
+            await projectController.remove(id);
+            res.status(200).end();
+        })
+
     }
 }
 

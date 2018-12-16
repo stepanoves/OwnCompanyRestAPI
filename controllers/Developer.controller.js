@@ -1,83 +1,39 @@
-const {developers} = require('../mocks/Developer.mock');
-const {Developer} = require('../models/Developer');
+const {developerRepository} = require('../repositories/DeveloperRepository')
 
 class DeveloperController {
 
-    findOne(id) {
-        return developers.find(
-            ({id: DId}) => DId === +id
-        );
+    async create(developer) {
+        return await developerRepository.create(developer);
     }
 
-    findByStatus(status) {
-        let stat = status == 'true';
-        return developers.filter(
-            ({status: Dstatus}) => Dstatus === stat
-        );
+    async remove(id) {
+        return await developerRepository.remove(id);
     }
 
-    findFree(quantity) {
-        let freeDevelopers = this.findByStatus(false);
-        if (freeDevelopers.length >= quantity) {
-            freeDevelopers.length = quantity;
-            return freeDevelopers;
-        }
-        return false;
+    async update(id, developer) {
+        return await developerRepository.update(id, developer);
     }
 
-    changeStatus(developersID) {
-        for (let developerID of developersID) {
-            this.findOne(+developerID).status = !this.findOne(+developerID).status;
-        }
+    async findAll() {
+        return await developerRepository.findAll();
     }
 
-    create( {name, surname, position, stringQuantity} ) {
-        let developer = new Developer(name, surname, position, +stringQuantity);
-        if(!developers.length) {
-            developer.setID(1);
-        } else {
-            developer.setID(developers[developers.length-1].id + 1);
-        }
-
-        developers.push(developer);
+    async findOne(id) {
+        return await developerRepository.findOne(id);
     }
 
-    updateOne( id, {name, surname, position, stringQuantity}) {
-
-        const index = developers.findIndex(obj => obj.id === +id);
-        developers[index].name = name;
-        developers[index].surname = surname;
-        developers[index].position = position;
-        developers[index].stringQuantity = stringQuantity;
-
+    async findByStatus(status) {
+        return await developerRepository.findByStatus(status);
     }
 
-    deleteOne(id) {
-        const index = developers.findIndex(obj => obj.id === +id);
-        console
-        developers.splice(index, 1);
+    async getSalary() {
+        return await developerRepository.getSalary();
     }
 
-    deleteAll() {
-        developers.lenght = 0;
+    async getCommonStringQuantity(developersID) {
+        return await developerRepository.getCommonStringQuantity(developersID);
     }
 
-    getSalary() {
-        let salary = 0;
-        for(let developer of developers) {
-            salary += Developer.SALARY[developer.status][developer.position];
-        }
-        return salary;
-    }
-
-    getCommonStrings(developersID) {
-        let commonStrings = 0;
-        for (let developerID of developersID) {
-            commonStrings += this.findOne(+developerID).stringQuantity;
-        }
-
-        return commonStrings;
-    }
 }
 
 exports.developerController = new DeveloperController();

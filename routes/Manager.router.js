@@ -1,8 +1,8 @@
-const {Router} = require('express');
 const {managerController} = require('../controllers/Manager.controller');
+const {Router} = require('express');
 
 class ManagerRouter {
-    constructor(){
+    constructor() {
         this.__router = new Router();
         this.__configure();
     }
@@ -12,49 +12,53 @@ class ManagerRouter {
     }
 
     __configure() {
-        this.__router.get('/getcoef/:id', (req, res) => {
+
+        this.__router.get('/', async(req, res) => {
+            res.json(
+                await managerController.findAll()
+            )
+        });
+
+        this.__router.get('/salary', async(req, res) => {
+            res.json(await managerController.getSalary());
+        });
+
+        this.__router.get('/:id', async(req, res) => {
             const {id} = req.params;
-            res.json(managerController.getCoefficient(+id));
+            res.json(
+                await managerController.findOne(id)
+            )
         });
 
-        this.__router.get('/findfree', (req, res) => {
-            res.json(managerController.findFree());
-        });
-
-        this.__router.get('/salary', (req, res) => {
-            const {id} = req.params;
-            res.json(managerController.getSalary());
-        });
-
-        this.__router.get('/:status', (req, res) => {
+        this.__router.get('/status/:status', async(req, res) => {
             const {status} = req.params;
-            res.json(managerController.findByStatus(status));
+            console.log(status);
+            res.json(
+                await managerController.findByStatus(status)
+            )
         });
 
-        this.__router.post('/', (req, res) => {
+        this.__router.post('/', async(req, res) => {
             const {body} = req;
-            managerController.create(body);
-            res.status(201).end();
-        });
 
-        this.__router.put('/changestatus/:id', (req, res) => {
-            const {id} = req.params;
-            managerController.changeStatus(id);
+            await managerController.create(body);
             res.status(201).end();
-        });
+        })
 
-        this.__router.put('/:id', (req, res) => {
+        this.__router.put('/:id', async(req, res) => {
             const {id} = req.params;
             const {body} = req;
-            managerController.updateOne(id, body);
+
+            await managerController.update(id, body);
             res.status(201).end();
         });
 
-        this.__router.delete('/delete/:id', (req, res) => {
+        this.__router.delete('/:id', async(req, res) => {
             const {id} = req.params;
-            managerController.deleteOne(id);
+
+            await managerController.remove(id);
             res.status(200).end();
-        });
+        })
 
     }
 }

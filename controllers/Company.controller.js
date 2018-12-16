@@ -1,22 +1,31 @@
-const {company} = require('../mocks/Company.mock');
-const {managerController} = require('./Manager.controller');
-const {developerController} = require('./Developer.controller');
+const {companyRepository} = require('../repositories/CompanyRepository');
 
 class CompanyController {
 
-    create({title, budget}) {
-        company.title = title;
-        company.budget = +budget;
+    async find() {
+        return await companyRepository.find();
     }
 
-    getCompany() {
-        return company;
+    async getBudget(title) {
+        return await companyRepository.getBudget(title);
     }
 
-    paySalary() {
-        company.budget -= managerController.getSalary() + developerController.getSalary();
+    async create(company) {
+        return await companyRepository.create(company);
     }
 
+    async remove(id) {
+        return await companyRepository.remove(id);
+    }
+
+    async update(title, budget) {
+        return await companyRepository.update(title, budget);
+    }
+
+    async paySalary(title, budget) {
+        return await companyRepository.paySalary(title, budget);
+    }
 }
+
 
 exports.companyController = new CompanyController();
